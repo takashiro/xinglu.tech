@@ -183,7 +183,7 @@ body {
   font-size: 14px;
   line-height: 24px;
   color: white;
-  font-family: 'robotolight', 'Microsoft YaHei';
+  font-family: 'robotoregular', 'Microsoft YaHei';
 }
 
 a {
@@ -260,14 +260,12 @@ h1, h2, h3, h4, h5 {
 .box-content {
   background: white;
   color: #555;
-  font-family: 'robotolight';
   padding: 30px;
   margin-top: 30px;
 }
 .box-content .widget-title {
   font-size: 22px;
   color: #333;
-  font-family: 'robotolight';
   margin-bottom: 30px;
 }
 
@@ -277,65 +275,65 @@ h1, h2, h3, h4, h5 {
 }
 .welcome-text h2 {
   font-size: 32px;
-  font-family: 'robotolight';
   margin-bottom: 30px;
   color: white;
 }
 .welcome-text p {
   font-size: 18px;
-  font-family: 'robotolight';
 }
 
-.subscribe-form {
+.standard-form {
   margin-top: 80px;
 }
-.subscribe-form input.email {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  outline: 0;
-  border: 1px solid #fff;
-  padding: 10px 15px;
-  width: 100%;
-  display: inline-block;
-  font-size: 14px;
+.standard-form input{
+	margin: 10px 0;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.1);
+	outline: 0;
+	border: 1px solid #fff;
+	padding: 10px 15px;
+	width: 100%;
+	display: inline-block;
+	font-size: 14pt;
 }
-.subscribe-form input.button {
+.standard-form button {
   background: #5cb48e;
   color: white;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 14pt;
   padding: 10px 20px;
   outline: 0;
   border: 0;
   -webkit-border-radius: 10px;
   border-radius: 10px;
+  width: 45%;
 }
-.subscribe-form .button-holder {
-  text-align: left;
+.standard-form .button-holder {
+  text-align: center;
 }
 @media screen and (max-width: 992px) {
-  .subscribe-form .button-holder {
+  .standard-form .button-holder {
     margin-top: 20px;
     text-align: center;
   }
 }
-.subscribe-form p {
+.standard-form p {
   margin-top: 20px;
   font-size: 12px;
 }
-.subscribe-form ::-webkit-input-placeholder {
+.standard-form ::-webkit-input-placeholder {
   color: #fff;
 }
-.subscribe-form :-moz-placeholder {
+.standard-form :-moz-placeholder {
   /* Firefox 18- */
   color: #fff;
 }
-.subscribe-form ::-moz-placeholder {
+.standard-form ::-moz-placeholder {
   /* Firefox 19+ */
   color: #fff;
 }
-.subscribe-form :-ms-input-placeholder {
+.standard-form :-ms-input-placeholder {
   color: #fff;
 }
 
@@ -438,7 +436,6 @@ h1, h2, h3, h4, h5 {
   background: rgba(0, 0, 0, 0.3);
   padding: 15px 30px;
   text-transform: uppercase;
-  font-family: 'robotoregular';
   display: inline-block;
 }
 .toggle-menu i {
@@ -509,7 +506,6 @@ h1, h2, h3, h4, h5 {
 }
 
 .profile-name {
-  font-family: 'robotoregular';
   font-size: 18px;
 }
 
@@ -621,7 +617,7 @@ h1, h2, h3, h4, h5 {
   max-width: 100%;
   border: 1px solid #dddddd;
 }
-.contact-form input.button {
+.contact-form button {
   width: auto;
   color: white;
   background: #5cb48e;
@@ -648,3 +644,17 @@ h1, h2, h3, h4, h5 {
 
 
 /* Custom */
+
+div.toast{
+	background: #207d59;
+	color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 50%;
+	text-align: center;
+	margin: 23% 0 0 25%;
+	opacity: 1;
+	padding: 1em;
+	z-index: 99;
+}
