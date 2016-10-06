@@ -609,7 +609,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /*------ contact ------ */
-.contact-form input, .contact-form textarea {
+form input, form textarea {
   width: 100%;
   outline: 0;
   padding: 8px 10px;
@@ -617,7 +617,7 @@ h1, h2, h3, h4, h5 {
   max-width: 100%;
   border: 1px solid #dddddd;
 }
-.contact-form button {
+form button {
   width: auto;
   color: white;
   background: #5cb48e;
@@ -626,6 +626,15 @@ h1, h2, h3, h4, h5 {
   outline: 0;
   margin-bottom: 0;
   padding: 12px 18px;
+}
+
+form input.short{
+  width: 6em;
+  margin: 0 3px 20px 3px;
+}
+
+form input.num{
+  text-align: center;
 }
 
 /*---------------------------------------------------------
@@ -653,8 +662,20 @@ div.toast{
 	left: 0;
 	width: 50%;
 	text-align: center;
-	margin: 23% 0 0 25%;
 	opacity: 1;
 	padding: 1em;
 	z-index: 99;
+}
+
+ul.device-detail li span{
+  font-weight: bold;
+  margin-right: 1em;
+  display: inline-block;
+  width: 5em;
+  text-align: right;
+}
+
+.block:hover{
+  background: #eefff8;
+  box-shadow: 0 0 10px #eefff8;
 }

@@ -1,0 +1,26 @@
+{template header}
+
+<div class="col-md-9 col-sm-12 content-holder">
+    <!-- CONTENT -->
+    <div id="menu-container">
+        <div class="content about-section" style="display: block;">
+        <!--{loop $devices $d}-->
+            <div class="col-md-6 col-sm-6">
+                <a href="index.php?mod=reservation:add&deviceid=$d[id]">
+                    <div class="box-content block">
+                        <h3 class="widget-title">$d[name]</h3>
+                        <ul class="device-detail">
+                            <li><span>类型</span>$d[type]</li>
+                            <li><span>状态</span>{echo Device::$Status[$d['status']]}</li>
+                            <li><span>地点</span>$d[location]</li>
+                            <li><span>管理员</span>$d[admin]</li>
+                        </ul>
+                    </div>
+                </a>
+            </div>
+        <!--{/loop}-->
+        </div>
+    </div>
+</div>
+
+{template footer}

@@ -1,0 +1,103 @@
+{template header}
+
+<script>
+$(function(){
+    $('input[name="month"]').change(function(e){
+        var input = $(e.target);
+        var value = parseInt(input.val(), 10);
+        if(isNaN(value) || value < 1){
+            value = 1;
+        }else if(value > 12){
+            value = 12;
+        }
+        input.val(value);
+    });
+
+    $('input[name="date"]').change(function(e){
+        var input = $(e.target);
+        var value = parseInt(input.val(), 10);
+        if(isNaN(value) || value < 1){
+            value = 1;
+        }else if(value > 31){
+            value = 31;
+        }
+        input.val(value);
+    });
+
+    $('input[name="hour_start"]').change(function(e){
+        var input = $(e.target);
+        var value = parseInt(input.val(), 10);
+        if(isNaN(value) || value < 1){
+            value = 1;
+        }else if(value > 23){
+            value = 23;
+        }
+        input.val(value);
+    });
+
+    $('input[name="hour_end"]').change(function(e){
+        var input = $(e.target);
+        var value = parseInt(input.val(), 10);
+        var hour_start = parseInt($('input[name="hour_start"]').val(), 10);
+        if(isNaN(value) || value <= hour_start){
+            value = hour_start + 1;
+        }else if(value > 24){
+            value = 24;
+        }
+
+        input.val(value);
+    });
+});
+</script>
+
+<div class="col-md-9 col-sm-12 content-holder">
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
+            <div class="box-content">
+                <form class="toast" action="index.php?mod=reservation:add&deviceid=$deviceid" method="post">
+                    <h3 class="widget-title">预约设备 - $d[name]</h3>
+                    <ul class="device-detail">
+                        <li><span>类型</span>$d[type]</li>
+                        <li><span>状态</span>{echo Device::$Status[$d['status']]}</li>
+                        <li><span>地点</span>$d[location]</li>
+                        <li><span>管理员</span>$d[admin]</li>
+                    </ul>
+                    <br>
+                    <h3 class="widget-title">预约时间</h3>
+                    <fieldset>
+                        <input type="text" name="month" class="short num">月<input type="text" name="date" class="short num">日
+                    </fieldset>
+                    <fieldset>
+                        <input type="text" name="hour_start" class="short num">时 ~ <input type="text" name="hour_end" class="short num">时
+                    </fieldset>
+                    <fieldset>
+                        <input type="text" name="sample_number" placeholder="请输入样品数量">
+                    </fieldset>
+                    <fieldset>
+                        <textarea name="sample_description" placeholder="请输入样品描述"></textarea>
+                    </fieldset>
+                    <fieldset>
+                        <input class="button" value="确认预约" type="submit">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="box-content">
+                <h3 class="widget-title">温馨提示</h3>
+                <p>Sed ullamcorper, risus a tincidunt efficitur, massa mauris ultricies leo, eu interdum eros erat non augue. <br><br>
+                Suspendisse ornare sollicitudin lectus non egestas. Nam fermentum imperdiet ligula congue venenatis. </p>
+                <div class="about-social">
+                    <ul>
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                        <li><a href="#" class="fa fa-linkedin"></a></li>
+                        <li><a href="#" class="fa fa-dribbble"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{template footer}
