@@ -7,5 +7,6 @@ CREATE TABLE `pre_reservation` (
     `sample_number` smallint(5) unsigned NOT NULL,
     `sample_description` text NOT NULL,
     `comment` text NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    KEY `timespan` (`deviceid`, `time_start`, `time_end`)
 ) Engine=MyISAM  DEFAULT CHARSET=utf8;

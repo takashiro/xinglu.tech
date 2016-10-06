@@ -1,0 +1,39 @@
+{template header}
+
+<ol class="nav">
+    <li><a href="admin.php">管理面板</a></li>
+    <li>预约</li>
+</ol>
+
+<div class="box list">
+    <h4>预约列表</h4>
+
+    <table id="device-list">
+        <thead>
+            <tr>
+                <th></th>
+                <td>设备</td>
+                <td>预约日期</td>
+                <td>预约时间</td>
+                <td>样品数量</td>
+                <td>样品描述</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+        <!--{loop $reservations $r}-->
+            <tr data-primaryvalue="$r[id]">
+                <th></th>
+                <td>$r[devicename]</td>
+                <td>{echo rdate($r['time_start'], 'm月d日')}</td>
+                <td>{echo rdate($r['time_start'], 'H')}时 - {echo rdate($r['time_end'], 'H')}时</td>
+                <td>$r[sample_number]</td>
+                <td>$r[sample_description]</td>
+                <td></td>
+            </tr>
+        <!--{/loop}-->
+        </tbody>
+    </table>
+</div>
+
+{template footer}
