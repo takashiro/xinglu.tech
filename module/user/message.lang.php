@@ -4,6 +4,7 @@ return array(
 	'you_have_logged_in' => '您已登录辣，不需要再次登录~',
 	'successfully_logged_in' => '登录成功！',
 	'invalid_account_or_password' => '账号或密码错误！请重试。',
+	'you_logged_out' => '成功退出系统。',
 
 	'account_too_short_or_too_long' => '用户名过长或过短，不能多于5个汉字（15个字母）或少于4个字母（两个汉字）。',
 	'password_too_short' => '密码长度不能少于6位。',
