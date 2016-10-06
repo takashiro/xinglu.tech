@@ -1,0 +1,60 @@
+{template header}
+
+<script src="js/jquery.editlist.js?$_CONFIG[refversion]"></script>
+<script>
+$(function(){
+    $('#device-list').editlist({
+        'edit' : '$mod_url&action=edit',
+        'delete' : '$mod_url&action=delete',
+        'buttons' : {'delete' : '删除'},
+        'attr' : ['', 'name', 'type', 'status', 'admin', 'location']
+    });
+});
+</script>
+
+<ol class="nav">
+    <li><a href="admin.php">管理面板</a></li>
+    <li>设备</li>
+</ol>
+
+<div class="box list">
+    <h4>设备列表</h4>
+
+    <table id="device-list">
+        <thead>
+            <tr>
+                <th></th>
+                <td>名称</td>
+                <td>类型</td>
+                <td>状态</td>
+                <td>管理员</td>
+                <td>地点</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+        <!--{loop $devices $d}-->
+            <tr data-primaryvalue="$d[id]">
+                <th></th>
+                <td>$d[name]</td>
+                <td>$d[type]</td>
+                <td data-realvalue="$d[status]">{echo Device::$Status[$d['status']]}</td>
+                <td>$d[admin]</td>
+                <td>$d[location]</td>
+                <td></td>
+            </tr>
+        <!--{/loop}-->
+            <tr>
+                <th></th>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td>{echo Template::select('', array(Device::Normal => lang('common', 'device_normal'), Device::Maintained => lang('common', 'device_maintained')), 0)}</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><button class="add">添加</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{template footer}
