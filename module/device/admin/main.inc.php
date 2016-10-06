@@ -32,7 +32,7 @@ class DeviceMainModule extends AdminControlPanelModule{
                 }
             }
         }
-        foreach(array('name', 'type', 'admin', 'location') as $var){
+        foreach(array('name', 'model', 'admin', 'location') as $var){
             if(isset($_POST[$var])){
                 $device->$var = htmlspecialchars(trim($_POST[$var]));
             }

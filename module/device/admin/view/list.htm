@@ -7,7 +7,7 @@ $(function(){
         'edit' : '$mod_url&action=edit',
         'delete' : '$mod_url&action=delete',
         'buttons' : {'delete' : '删除'},
-        'attr' : ['', 'name', 'type', 'status', 'admin', 'location']
+        'attr' : ['', 'name', 'model', 'status', 'admin', 'location']
     });
 });
 </script>
@@ -25,7 +25,7 @@ $(function(){
             <tr>
                 <th></th>
                 <td>名称</td>
-                <td>类型</td>
+                <td>型号</td>
                 <td>状态</td>
                 <td>管理员</td>
                 <td>地点</td>
@@ -37,7 +37,7 @@ $(function(){
             <tr data-primaryvalue="$d[id]">
                 <th></th>
                 <td>$d[name]</td>
-                <td>$d[type]</td>
+                <td>$d[model]</td>
                 <td data-realvalue="$d[status]">{echo Device::$Status[$d['status']]}</td>
                 <td>$d[admin]</td>
                 <td>$d[location]</td>
