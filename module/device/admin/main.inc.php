@@ -39,6 +39,9 @@ class DeviceMainModule extends AdminControlPanelModule{
         }
 
         if($id <= 0){
+			if(!isset($device->kindly_reminder)){
+				$device->kindly_reminder = '';
+			}
             $device->insert();
         }
 
