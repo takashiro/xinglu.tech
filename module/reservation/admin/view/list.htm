@@ -13,6 +13,8 @@
             <tr>
                 <th></th>
                 <td>设备</td>
+                <td>用户</td>
+                <td>状态</td>
                 <td>预约日期</td>
                 <td>预约时间</td>
                 <td>样品数量</td>
@@ -25,11 +27,16 @@
             <tr data-primaryvalue="$r[id]">
                 <th></th>
                 <td>$r[devicename]</td>
+                <td>$r[account]</td>
+                <td>{echo Reservation::$Status[$r['status']]}</td>
                 <td>{echo rdate($r['time_start'], 'm月d日')}</td>
                 <td>{echo rdate($r['time_start'], 'H')}时 - {echo rdate($r['time_end'], 'H')}时</td>
                 <td>$r[sample_number]</td>
                 <td>$r[sample_description]</td>
-                <td></td>
+                <td>
+                    <a href="$mod_url&action=accept&id=$r[id]" class="toast">[接受]</a>
+                    <a href="$mod_url&action=reject&id=$r[id]" class="toast">[拒绝]</a>
+                </td>
             </tr>
         <!--{/loop}-->
         </tbody>

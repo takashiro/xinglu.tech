@@ -34,14 +34,9 @@ if($_POST){
         showmsg('please_input_a_date_in_the_future', 'back');
     }
 
-    $r = $db->fetch_first("SELECT id,time_start,time_end
-        FROM {$tpre}reservation
-        WHERE deviceid=$deviceid
-            AND ((time_start<$time_end AND $time_start<time_end)
-                OR ($time_start<time_end AND time_start<$time_end))
-        LIMIT 1");
+    $r = Reservation::CheckConflict($deviceid, $time_start, $time_end);
     if($r){
-        $hour_start = rdate($r['time_start'], 'H');
+        $hour_start = intval(rdate($r['time_start'], 'H'));
         $hour_end = $hour_start + round(($r['time_end'] - $r['time_start']) / 3600);
         showmsg(array('reservation_is_conflicted', $hour_start, $hour_end), 'back');
     }
