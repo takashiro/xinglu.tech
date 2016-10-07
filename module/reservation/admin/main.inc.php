@@ -15,7 +15,7 @@ class ReservationMainModule extends AdminControlPanelModule{
         $condition = $condition ? '('.implode(') AND (', $condition).')' : '1';
 
         global $db, $tpre;
-        $reservations = $db->fetch_all("SELECT r.*,d.name AS devicename, u.account
+        $reservations = $db->fetch_all("SELECT r.*,d.name AS devicename, u.account, u.realname
             FROM {$tpre}reservation r
                 LEFT JOIN {$tpre}device d ON d.id=r.deviceid
                 LEFT JOIN {$tpre}user u ON u.id=r.userid

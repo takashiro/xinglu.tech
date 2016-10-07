@@ -13,7 +13,7 @@
             <tr>
                 <th></th>
                 <td>设备</td>
-                <td>用户</td>
+                <td>预约人</td>
                 <td>状态</td>
                 <td>预约日期</td>
                 <td>预约时间</td>
@@ -27,7 +27,7 @@
             <tr data-primaryvalue="$r[id]">
                 <th></th>
                 <td>$r[devicename]</td>
-                <td>$r[account]</td>
+                <td><!--{if $r['realname']}-->$r[realname]<!--{else}-->$r[account]<!--{/if}--></td>
                 <td>{echo Reservation::$Status[$r['status']]}</td>
                 <td>{echo rdate($r['time_start'], 'm月d日')}</td>
                 <td>{echo rdate($r['time_start'], 'H')}时 - {echo rdate($r['time_end'], 'H')}时</td>
