@@ -679,3 +679,19 @@ ul.device-detail li span{
   background: #eefff8;
   box-shadow: 0 0 10px #eefff8;
 }
+
+.box.message{
+  font-size: 14pt;
+  background: white;
+  box-shadow: 0 0 2px white;
+  padding: 20px;
+}
+
+.box.message h1{
+  font-size: 18pt;
+}
+
+.box.message p{
+  margin: 30px 0;
+  color: #333333;
+}
