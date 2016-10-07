@@ -34,8 +34,12 @@
                 <td>$r[sample_number]</td>
                 <td>$r[sample_description]</td>
                 <td>
+                    <!--{if empty($r['devicedeleted']) && $r['status'] != Reservation::Accepted}-->
                     <a href="$mod_url&action=accept&id=$r[id]" class="toast">[接受]</a>
+                    <!--{/if}-->
+                    <!--{if $r['status'] != Reservation::Rejected}-->
                     <a href="$mod_url&action=reject&id=$r[id]" class="toast">[拒绝]</a>
+                    <!--{/if}-->
                 </td>
             </tr>
         <!--{/loop}-->

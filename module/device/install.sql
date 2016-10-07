@@ -7,5 +7,7 @@ CREATE TABLE `pre_device` (
     `status` tinyint(4) unsigned NOT NULL DEFAULT '0',
     `admin` varchar(50) DEFAULT NULL,
     `kindly_reminder` text DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`),
+    KEY `deleted` (`deleted`)
 ) Engine=MyISAM  DEFAULT CHARSET=utf8;

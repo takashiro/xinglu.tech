@@ -15,7 +15,7 @@ class ReservationMainModule extends AdminControlPanelModule{
         $condition = $condition ? '('.implode(') AND (', $condition).')' : '1';
 
         global $db, $tpre;
-        $reservations = $db->fetch_all("SELECT r.*,d.name AS devicename, u.account, u.realname
+        $reservations = $db->fetch_all("SELECT r.*,d.name AS devicename, d.deleted AS devicedeleted, u.account, u.realname
             FROM {$tpre}reservation r
                 LEFT JOIN {$tpre}device d ON d.id=r.deviceid
                 LEFT JOIN {$tpre}user u ON u.id=r.userid
@@ -41,6 +41,10 @@ class ReservationMainModule extends AdminControlPanelModule{
             $hour_start = intval(rdate($r['time_start'], 'H'));
             $hour_end = $hour_start + round(($r['time_end'] - $r['time_start']) / 3600);
             showmsg(array('reservation_can_not_be_accepted_due_to_conflict', $hour_start, $hour_end), 'back');
+        }
+
+        if(!Device::Exist($reservation->deviceid)){
+            showmsg('device_does_not_exist', 'refresh');
         }
 
         $new_status = Reservation::Accepted;

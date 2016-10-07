@@ -7,7 +7,7 @@ class DeviceMainModule extends AdminControlPanelModule{
     public function defaultAction(){
         global $db;
         $table = $db->select_table('device');
-        $devices = $table->fetch_all('*');
+        $devices = $table->fetch_all('*', 'deleted=0');
 
         extract($GLOBALS, EXTR_REFS | EXTR_SKIP);
         include view('list');
@@ -47,6 +47,23 @@ class DeviceMainModule extends AdminControlPanelModule{
 
         echo json_encode($device->toReadable());
         exit;
+    }
+
+    public function deleteAction(){
+        if(empty($_REQUEST['id'])) exit;
+
+        $id = intval($_REQUEST['id']);
+        $device = new Device($id);
+        if($device->exists()){
+            $device->deleted = 1;
+
+            global $db, $tpre;
+            $rejected = Reservation::Rejected;
+            $timestamp = TIMESTAMP;
+            $db->query("UPDATE {$tpre}reservation SET status=$rejected WHERE deviceid=$id AND time_start>={$timestamp}");
+        }
+
+        showmsg('device_is_deleted', 'refresh');
     }
 
 }

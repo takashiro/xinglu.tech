@@ -2,7 +2,7 @@
 
 if(!defined('S_ROOT')) exit('access denied');
 
-$condition = array('r.status='.Reservation::Accepted);
+$condition = array('r.status='.Reservation::Accepted, 'd.deleted=0');
 
 if(isset($_GET['time_start'])){
     $time_start = rstrtotime($_GET['time_start']);
