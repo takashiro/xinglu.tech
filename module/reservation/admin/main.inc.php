@@ -8,7 +8,7 @@ class ReservationMainModule extends AdminControlPanelModule{
         extract($GLOBALS, EXTR_REFS | EXTR_SKIP);
 
         $condition = array();
-        $query_string[] = array();
+        $query_string = array();
 
         if(isset($_GET['deviceid'])){
             $deviceid = intval($_GET['deviceid']);
@@ -20,6 +20,32 @@ class ReservationMainModule extends AdminControlPanelModule{
             $userid = intval($_GET['userid']);
             $condition[] = 'r.userid='.$userid;
             $query_string['userid'] = $userid;
+        }
+
+        if(isset($_GET['time_start'])){
+            $time_start = rstrtotime($_GET['time_start']);
+        }else{
+            if(isset($deviceid) || isset($userid)){
+                $time_start = '';
+            }else{
+                $time_start = TIMESTAMP;
+            }
+        }
+        if($time_start){
+            $condition[] = 'r.time_start>='.$time_start;
+            $time_start = rdate($time_start, 'Y-m-d H:i');
+            $query_string['time_start'] = $time_start;
+        }
+
+        if(isset($_GET['time_end'])){
+            $time_end = rstrtotime($_GET['time_end']);
+        }else{
+            $time_end = '';
+        }
+        if($time_end){
+            $condition[] = 'r.time_start<='.$time_end;
+            $time_end = rdate($time_end, 'Y-m-d H:i');
+            $query_string['time_end'] = $time_end;
         }
 
         $limit = 20;

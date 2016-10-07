@@ -1,5 +1,7 @@
 {template header}
 
+<script src="js/datetime.js"></script>
+
 <ol class="nav">
     <li><a href="admin.php">管理面板</a></li>
     <li>预约</li>
@@ -7,6 +9,30 @@
 
 <div class="box list">
     <h4>预约列表</h4>
+
+    <form class="quick_search" action="admin.php">
+        <input type="hidden" name="mod" value="$mod">
+        <!--{if !empty($userid)}-->
+        <input type="hidden" name="userid" value="$userid">
+        <!--{/if}-->
+        <!--{if !empty($deviceid)}-->
+        <input type="hidden" name="deviceid" value="$deviceid">
+        <!--{/if}-->
+        <dl>
+            <dt>状态：</dt>
+            <dl>
+                <!--{loop Reservation::$Status $statusid $value}-->
+                {echo Template::checkbox('status['.$statusid.']', $value)}
+                <!--{/loop}-->
+            </dl>
+            <dt>时间：</dt>
+            <dl>
+                <input type="text" class="datetime" name="time_start" value="$time_start" autocomplete="off"> ~
+                <input type="text" class="datetime" name="time_end" value="$time_end" autocomplete="off">
+            </dl>
+        </dl>
+        <button type="submit">查找</button>
+    </form>
 
     <table id="device-list">
         <thead>
