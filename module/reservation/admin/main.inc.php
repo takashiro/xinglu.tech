@@ -5,14 +5,34 @@ if(!defined('IN_ADMINCP')) exit('access denied');
 class ReservationMainModule extends AdminControlPanelModule{
 
     public function defaultAction(){
+        extract($GLOBALS, EXTR_REFS | EXTR_SKIP);
+
         $condition = array();
+        $query_string[] = array();
 
         if(isset($_GET['deviceid'])){
             $deviceid = intval($_GET['deviceid']);
             $condition[] = 'r.deviceid='.$deviceid;
+            $query_string['deviceid'] = $deviceid;
         }
 
+        if(isset($_GET['userid'])){
+            $userid = intval($_GET['userid']);
+            $condition[] = 'r.userid='.$userid;
+            $query_string['userid'] = $userid;
+        }
+
+        $limit = 20;
+        $offset = ($page - 1) * $limit;
+
         $condition = $condition ? '('.implode(') AND (', $condition).')' : '1';
+        $query_string = $query_string ? '&'.http_build_query($query_string) : '';
+
+        $totalnum = $db->result_first("SELECT COUNT(*)
+            FROM {$tpre}reservation r
+                LEFT JOIN {$tpre}device d ON d.id=r.deviceid
+                LEFT JOIN {$tpre}user u ON u.id=r.userid
+            WHERE $condition");
 
         global $db, $tpre;
         $reservations = $db->fetch_all("SELECT r.*,d.name AS devicename, d.deleted AS devicedeleted, u.account, u.realname
@@ -20,10 +40,10 @@ class ReservationMainModule extends AdminControlPanelModule{
                 LEFT JOIN {$tpre}device d ON d.id=r.deviceid
                 LEFT JOIN {$tpre}user u ON u.id=r.userid
             WHERE $condition
-            ORDER BY r.deviceid,r.status,r.time_start,r.time_end");
+            ORDER BY r.deviceid,r.status,r.time_start,r.time_end
+            LIMIT $offset,$limit");
         unset($r);
 
-        extract($GLOBALS, EXTR_REFS | EXTR_SKIP);
         include view('list');
     }
 

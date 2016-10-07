@@ -26,8 +26,8 @@
         <!--{loop $reservations $r}-->
             <tr data-primaryvalue="$r[id]">
                 <th></th>
-                <td>$r[devicename]</td>
-                <td><!--{if $r['realname']}-->$r[realname]<!--{else}-->$r[account]<!--{/if}--></td>
+                <td><a href="$mod_url&deviceid=$r[deviceid]">$r[devicename]</a></td>
+                <td><a href="$mod_url&userid=$r[userid]"><!--{if $r['realname']}-->$r[realname]<!--{else}-->$r[account]<!--{/if}--></a></td>
                 <td>{echo Reservation::$Status[$r['status']]}</td>
                 <td>{echo rdate($r['time_start'], 'm月d日')}</td>
                 <td>{echo rdate($r['time_start'], 'H')}时 - {echo rdate($r['time_end'], 'H')}时</td>
@@ -46,5 +46,7 @@
         </tbody>
     </table>
 </div>
+
+{echo Template::mpage($totalnum, $page, $limit, $mod_url.$query_string)}
 
 {template footer}
