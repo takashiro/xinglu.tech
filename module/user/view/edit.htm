@@ -1,0 +1,80 @@
+{template header}
+
+<div class="col-md-9 col-sm-12 content-holder">
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="box-content">
+                <form class="toast" action="index.php?mod=user" method="post">
+                    <h3 class="widget-title">个人信息</h3>
+                    <fieldset>
+                        <input type="text" name="realname" placeholder="请填写真实姓名" value="$_USER[realname]">
+                    </fieldset>
+                    <fieldset>
+                        <input type="text" name="email" placeholder="请填写电子邮箱" value="$_USER[email]">
+                    </fieldset>
+                    <fieldset>
+                        <input type="text" name="mobile" placeholder="请填写手机号码" value="$_USER[mobile]">
+                    </fieldset>
+                    <fieldset>
+                        <input type="submit" class="button" value="修改个人信息">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="box-content">
+                <form class="toast" action="index.php?mod=user:changepassword" method="post">
+                    <h3 class="widget-title">修改密码</h3>
+                    <fieldset>
+                        <input type="password" id="old_password" name="old_password" placeholder="请填写原始密码" autocomplete="off">
+                    </fieldset>
+                    <fieldset>
+                        <input type="password" id="new_password" name="new_password" placeholder="请填写新密码" autocomplete="off">
+                    </fieldset>
+                    <fieldset>
+                        <input type="password" id="new_password2" name="new_password2" placeholder="请再次输入新密码" autocomplete="off">
+                    </fieldset>
+                    <fieldset>
+                        <input type="submit" class="button" id="change-password-button" value="修改密码">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function makeErrorToast(event, message){
+    makeToast(message);
+    event.preventDefault();
+}
+
+$('#change-password-button').click(function(e){
+    var old_password = $('#old_password');
+    if(old_password.val() == ''){
+        old_password.focus();
+        return makeErrorToast(e, '请输入旧密码。');;
+    }
+
+    var new_password = $('#new_password');
+    if(new_password.val() == ''){
+        new_password.focus();
+        return makeErrorToast(e, '请输入新密码。');
+    }
+
+    var new_password2 = $('#new_password2');
+    if(new_password2.val() == ''){
+        new_password2.focus();
+        return makeErrorToast(e, '请再次输入新密码。');
+    }
+
+    if(new_password2.val() != new_password.val()){
+        new_password.val('');
+        new_password2.val('');
+        new_password.focus();
+        return makeErrorToast(e, '您两次输入的密码不一致，请重新输入。');
+    }
+});
+</script>
+
+{template footer}

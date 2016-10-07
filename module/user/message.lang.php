@@ -2,7 +2,7 @@
 
 return array(
 	'you_have_logged_in' => '您已登录辣，不需要再次登录~',
-	'successfully_logged_in' => '登录成功！',
+	'successfully_logged_in' => '登录成功。',
 	'invalid_account_or_password' => '账号或密码错误！请重试。',
 	'you_logged_out' => '成功退出系统。',
 
@@ -18,8 +18,9 @@ return array(
 	'password_modifying_require_old_password' => '修改密码需要填写原密码。',
 	'two_different_passwords' => '您两次输入的密码不一致，请重新输入。',
 	'incorrect_old_password' => '您输入的旧密码不正确，请重新输入。',
-	'successfully_update_profile' => '修改个人信息成功！',
-	'register_succesfully' => '注册成功！',
+	'successfully_update_profile' => '修改个人信息成功。',
+	'register_succesfully' => '注册成功。',
+	'successfully_update_password' => '修改密码成功。',
 
 	'user_does_not_exist' => '该用户不存在。',
 	'user_password_is_successfully_reset' => '成功重置用户密码。',
