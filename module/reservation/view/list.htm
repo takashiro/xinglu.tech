@@ -1,0 +1,19 @@
+{template header}
+
+<div class="col-md-9 col-sm-12 content-holder">
+    <!--{loop $reservations $r}-->
+        <div class="col-md-6 col-sm-6">
+            <div class="box-content block">
+                <h3 class="widget-title">$r[devicename]</h3>
+                <ul class="device-detail">
+                    <li><span>型号</span>$r[devicemodel]</li>
+                    <li><span>地点</span>$r[devicelocation]</li>
+                    <li><span>预约日期</span>{echo rdate($r['time_start'], 'Y-m-d')}</li>
+                    <li><span>预约时间</span>{echo rdate($r['time_start'], 'H')}:00 - {echo rdate($r['time_end'], 'H')}:00</li>
+                </ul>
+            </div>
+        </div>
+    <!--{/loop}-->
+</div>
+
+{template footer}
