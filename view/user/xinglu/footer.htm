@@ -3,17 +3,20 @@
 					<nav id="nav" class="main-navigation hidden-xs hidden-sm">
 						<ul class="main-menu">
 							<li>
-								<a class="show-1 active homebutton" href="index.php?mod=device"><i class="fa fa-home"></i>预约</a>
+								<a class="homebutton" href="index.php?mod=device"><i class="fa fa-home"></i>设备列表</a>
+							</li>
+							<li>
+								<a class="projectbutton" href="index.php?mod=reservation"><i class="fa fa-book"></i>预约情况</a>
 							</li>
 							<li>
 							<!--{if $_G['user']->isLoggedIn()}-->
-								<a class="show-2 aboutbutton" href="index.php?mod=user"><i class="fa fa-user"></i>我的</a>
+								<a class="aboutbutton" href="index.php?mod=user"><i class="fa fa-user"></i>我的信息</a>
 							<!--{else}-->
-								<a class="show-2 aboutbutton" href="index.php?mod=user:login"><i class="fa fa-user"></i>登录</a>
+								<a class="aboutbutton" href="index.php?mod=user:login"><i class="fa fa-user"></i>登录注册</a>
 							<!--{/if}-->
 							</li>
 							<li>
-								<a class="show-5 contactbutton" href="index.php?mod=contactus"><i class="fa fa-envelope"></i>联系我们</a>
+								<a class="contactbutton" href="index.php?mod=contactus"><i class="fa fa-envelope"></i>联系我们</a>
 							</li>
 						</ul>
 					</nav>
