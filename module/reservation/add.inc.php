@@ -4,6 +4,8 @@ if(!defined('S_ROOT')) exit('access denied');
 
 if(!$_G['user']->isLoggedIn()){
     showmsg('please_login_before_reserving_a_device', 'index.php?mod=user:login');
+}elseif($_G['user']->groupid <= 0){
+    showmsg('you_are_not_permitted_to_make_a_reservation_yet', 'back');
 }
 
 $deviceid = intval($_GET['deviceid'] ?? 0);

@@ -23,4 +23,6 @@ return array(
 
 	'user_does_not_exist' => '该用户不存在。',
 	'user_password_is_successfully_reset' => '成功重置用户密码。',
+	'user_is_now_verified' => '成功确认该用户的注册信息。',
+	'user_is_now_banned' => '成功踢出该用户。',
 );

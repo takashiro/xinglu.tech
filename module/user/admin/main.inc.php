@@ -14,4 +14,20 @@ class UserMainModule extends AdminControlPanelModule{
         include view('list');
     }
 
+    public function verifyAction(){
+        if(empty($_GET['id'])) exit;
+        global $db, $tpre;
+        $id = intval($_GET['id']);
+        $db->query("UPDATE {$tpre}user SET groupid=1 WHERE id=$id");
+        showmsg('user_is_now_verified', 'refresh');
+    }
+
+    public function banAction(){
+        if(empty($_GET['id'])) exit;
+        global $db, $tpre;
+        $id = intval($_GET['id']);
+        $db->query("UPDATE {$tpre}user SET groupid=0 WHERE id=$id");
+        showmsg('user_is_now_banned', 'refresh');
+    }
+
 }

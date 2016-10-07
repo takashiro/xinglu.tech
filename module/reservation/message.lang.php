@@ -2,6 +2,7 @@
 
 return array(
     'please_login_before_reserving_a_device' => '请先登录后再进行预约。',
+    'you_are_not_permitted_to_make_a_reservation_yet' => '您还没有预约权限，请等待管理员审核。',
     'device_does_not_exist' => '该设备不存在。',
     'successfully_requested_a_new_reservation' => '成功预约。',
     'please_input_a_date_in_the_future' => '预约的日期必须至少提前1天。',

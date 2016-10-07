@@ -12,9 +12,11 @@
         <thead>
             <tr>
                 <td>ID</td>
-                <td>用户名</td>
+                <td>账号</td>
+                <td>真实姓名</td>
+                <td>邮箱</td>
                 <td>注册时间</td>
-                <td>操作</td>
+                <td>用户组</td>
             </tr>
         </thead>
         <tbody>
@@ -22,8 +24,16 @@
             <tr data-primaryvalue="$u[id]">
                 <td>$u[id]</td>
                 <td>$u[account]</td>
+                <td>$u[realname]</td>
+                <td>$u[email]</td>
                 <td>{echo rdate($u['regtime'])}</td>
-                <td></td>
+                <td>
+                    <!--{if $u['groupid']}-->
+                    正式 <a class="toast" href="$mod_url&action=ban&id=$u[id]">[踢出]</a>
+                    <!--{else}-->
+                    游客 <a class="toast" href="$mod_url&action=verify&id=$u[id]">[确认]</a>
+                    <!--{/if}-->
+                </td>
             </tr>
         <!--{/loop}-->
         </tbody>
