@@ -21,8 +21,8 @@
         <dl>
             <dt>状态：</dt>
             <dl>
-                <!--{loop Reservation::$Status $statusid $value}-->
-                {echo Template::checkbox('status['.$statusid.']', $value)}
+                <!--{loop $status $statusid $checked}-->
+                {echo Template::checkbox('status['.$statusid.']', Reservation::$Status[$statusid], $checked)}
                 <!--{/loop}-->
             </dl>
             <dt>时间：</dt>

@@ -38,7 +38,7 @@ class ReservationMainModule extends AdminControlPanelModule{
         }
 
         if(isset($_GET['time_end'])){
-            $time_end = rstrtotime($_GET['time_end']);
+            $time_end = $_GET['time_end'] ? rstrtotime($_GET['time_end']) : '';
         }else{
             $time_end = '';
         }
@@ -46,6 +46,32 @@ class ReservationMainModule extends AdminControlPanelModule{
             $condition[] = 'r.time_start<='.$time_end;
             $time_end = rdate($time_end, 'Y-m-d H:i');
             $query_string['time_end'] = $time_end;
+        }
+
+        $status = array();
+        foreach(Reservation::$Status as $statusid => $text){
+            $status[$statusid] = false;
+        }
+        if(isset($_GET['status']) && is_array($_GET['status'])){
+            foreach($_GET['status'] as $statusid => $checked){
+                $status[$statusid] = true;
+            }
+        }else{
+            $status[Reservation::Pending] = true;
+        }
+        $display_status = array();
+        foreach($status as $statusid => $checked){
+            if($checked){
+                $display_status[] = $statusid;
+            }
+        }
+        if($display_status){
+            $condition[] = 'r.status IN ('.implode(',', $display_status).')';
+        }else{
+            foreach($status as &$checked){
+                $checked = true;
+            }
+            unset($checked);
         }
 
         $limit = 20;
