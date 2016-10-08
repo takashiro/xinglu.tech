@@ -55,5 +55,17 @@ if($_POST){
     showmsg('successfully_requested_a_new_reservation', 'index.php?mod=reservation');
 }
 
+$accepted = Reservation::Accepted;
+$reservations = array();
+$query = $db->query("SELECT time_start,time_end
+    FROM {$tpre}reservation
+    WHERE deviceid=$deviceid AND time_start>={$_G['timestamp']} AND status=$accepted");
+while($r = $query->fetch_assoc()){
+    $r['date'] = rdate($r['time_start'], 'Y-m-d');
+    $r['hour_start'] = rdate($r['time_start'], 'H');
+    $r['hour_end'] = rdate($r['time_end'], 'H');
+    $reservations[] = $r;
+}
+
 $d = $device->toReadable();
 include view('add');
