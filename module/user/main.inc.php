@@ -16,7 +16,7 @@ if($_POST){
             showmsg('invalid_email', 'back');
         }
 
-        if(User::Exist($email, 'email')){
+        if($_G['user']->email != $email && User::Exist($email, 'email')){
             showmsg('duplicated_email', 'back');
         }
 
@@ -27,7 +27,7 @@ if($_POST){
         if(!User::IsMobile($mobile)){
             showmsg('incorrect_mobile_number', 'back');
         }
-        if(User::Exist($mobile, 'mobile')){
+        if($_G['user']->mobile != $mobile && User::Exist($mobile, 'mobile')){
             showmsg('duplicated_mobile', 'back');
         }
 
