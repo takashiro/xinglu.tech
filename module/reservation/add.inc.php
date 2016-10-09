@@ -13,6 +13,9 @@ $device = new Device($deviceid);
 if(!$device->exists()){
     showmsg('device_does_not_exist', 'refresh');
 }
+if($device->status != Device::Normal){
+	showmsg('device_is_unavailable_for_reservation', 'back');
+}
 
 if($_POST){
     $year = intval(rdate(TIMESTAMP, 'Y'));
