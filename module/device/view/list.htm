@@ -6,8 +6,8 @@
         <div class="content about-section" style="display: block;">
         <!--{loop $devices $d}-->
             <div class="col-md-6 col-sm-6">
-                <a href="index.php?mod=reservation:add&deviceid=$d[id]">
-                    <div class="box-content block">
+                <a href="{if $d['status'] == Device::Normal}index.php?mod=reservation:add&deviceid=$d[id]{else}###{/if}">
+                    <div class="box-content tile-button {if $d['status'] != Device::Normal}disabled{/if}">
                         <h3 class="widget-title">$d[name]</h3>
                         <ul class="device-detail">
                             <li><span>型号</span>$d[model]</li>

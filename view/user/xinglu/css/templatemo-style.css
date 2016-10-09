@@ -675,7 +675,15 @@ ul.device-detail li span{
   text-align: right;
 }
 
-.block:hover{
+.tile-button{
+	cursor: pointer;
+}
+
+.tile-button.disabled{
+	cursor: not-allowed;
+}
+
+.tile-button:not(.disabled):hover{
   background: #eefff8;
   box-shadow: 0 0 10px #eefff8;
 }
