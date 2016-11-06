@@ -71,4 +71,5 @@ while($r = $query->fetch_assoc()){
 }
 
 $d = $device->toReadable();
+$d['admin'] = $db->result_first("SELECT realname FROM {$tpre}administrator WHERE id={$d['adminid']}");
 include view('add');

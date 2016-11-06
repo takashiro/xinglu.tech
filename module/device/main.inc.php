@@ -2,15 +2,13 @@
 
 if(!defined('S_ROOT')) exit('access denied');
 
-$condition = array('delete=0');
-
-if(!$_G['admin']->isSuperAdmin()){
-	$condition[] = 'adminid='.$_G['admin']->id;
-}
+$condition = array('d.deleted=0');
 
 $condition = '('.implode(') AND (', $condition).')';
-$table = $db->select_table('device');
-$devices = $table->fetch_all('*', $condition);
+$devices = $db->fetch_all("SELECT d.*,a.realname AS admin
+	FROM {$tpre}device d
+		LEFT JOIN {$tpre}administrator a ON a.id=d.adminid
+	WHERE $condition");
 
 $admins = array();
 $query = $db->query("SELECT id,realname FROM {$tpre}administrator WHERE deleted=0");

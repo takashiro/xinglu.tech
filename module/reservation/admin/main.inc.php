@@ -10,6 +10,10 @@ class ReservationMainModule extends AdminControlPanelModule{
         $condition = array();
         $query_string = array();
 
+		if(!$_G['admin']->isSuperAdmin()){
+			$condition[] = 'd.adminid='.$_G['admin']->id;
+		}
+
         if(isset($_GET['deviceid'])){
             $deviceid = intval($_GET['deviceid']);
             $condition[] = 'r.deviceid='.$deviceid;
@@ -100,13 +104,20 @@ class ReservationMainModule extends AdminControlPanelModule{
     }
 
     public function acceptAction(){
-        global $db, $tpre;
+        global $db, $tpre, $_G;
         $id = intval($_GET['id'] ?? 0);
 
         $reservation = new Reservation($id);
         if(!$reservation->exists()){
             showmsg('reservation_does_not_exist', 'back');
         }
+
+		if(!$_G['admin']->isSuperAdmin()){
+			$has_permission = $db->result_first("SELECT 1 FROM {$tpre}device WHERE id={$reservation->deviceid} AND adminid={$_G['admin']->id}");
+			if(!$has_permission){
+				showmsg('no_permission_to_accept_reservation', 'back');
+			}
+		}
 
         $r = Reservation::CheckConflict($reservation->deviceid, $reservation->time_start, $reservation->time_end);
         if($r){
@@ -125,8 +136,17 @@ class ReservationMainModule extends AdminControlPanelModule{
     }
 
     public function rejectAction(){
-        global $db, $tpre;
+        global $db, $tpre, $_G;
         $id = intval($_GET['id'] ?? 0);
+
+		if(!$_G['admin']->isSuperAdmin()){
+			$deviceid = $db->result_first("SELECT deviceid FROM {$tpre}reservation WHERE id=$id");
+			$has_permission = $db->result_first("SELECT 1 FROM {$tpre}device WHERE id={$deviceid} AND adminid={$_G['admin']->id}");
+			if(!$has_permission){
+				showmsg('no_permission_to_reject_reservation', 'back');
+			}
+		}
+
         $new_status = Reservation::Rejected;
         $db->query("UPDATE {$tpre}reservation SET status=$new_status WHERE id=$id");
         showmsg('reservation_is_rejected', 'refresh');

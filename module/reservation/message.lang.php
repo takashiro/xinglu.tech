@@ -13,4 +13,7 @@ return array(
 	'reservation_is_accepted' => '已接受该预约。',
 	'reservation_is_rejected' => '已拒绝该预约。',
 	'device_is_unavailable_for_reservation' => '该设备当前无法接受预约。',
+
+	'no_permission_to_accept_reservation' => '您没有该设备的管理权限，无法接受预约。',
+	'no_permission_to_reject_reservation' => '您没有该设备的管理权限，无法拒绝预约。',
 );
