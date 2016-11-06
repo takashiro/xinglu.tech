@@ -7,7 +7,7 @@ $(function(){
         'edit' : '$mod_url&action=edit',
         'delete' : '$mod_url&action=delete',
         'buttons' : {'delete' : '删除'},
-        'attr' : ['', 'name', 'model', 'status', 'admin', 'location']
+        'attr' : ['', 'name', 'model', 'status', 'adminid', 'location']
     });
 });
 </script>
@@ -39,7 +39,7 @@ $(function(){
                 <td>$d[name]</td>
                 <td>$d[model]</td>
                 <td data-realvalue="$d[status]">{echo Device::$Status[$d['status']]}</td>
-                <td>$d[admin]</td>
+                <td data-realvalue="$d[adminid]">$d[admin]</td>
                 <td>$d[location]</td>
                 <td></td>
             </tr>
@@ -49,7 +49,7 @@ $(function(){
                 <td><input type="text"></td>
                 <td><input type="text"></td>
                 <td>{echo Template::select('', array(Device::Normal => lang('common', 'device_normal'), Device::Maintained => lang('common', 'device_maintained')), 0)}</td>
-                <td><input type="text"></td>
+                <td><!--{if $_G['admin']->isSuperAdmin()}-->{echo Template::select('', $admins)}<!--{/if}--></td>
                 <td><input type="text"></td>
                 <td><button class="add">添加</button></td>
             </tr>

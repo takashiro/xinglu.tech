@@ -2,6 +2,7 @@
 
 return array(
     'module_reservation' => '预约',
+	'permission_reservation' => '预约管理',
 
     'reservation_pending' => '待处理',
     'reservation_accepted' => '已接受',

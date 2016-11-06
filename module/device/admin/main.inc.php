@@ -5,9 +5,24 @@ if(!defined('IN_ADMINCP')) exit('access denied');
 class DeviceMainModule extends AdminControlPanelModule{
 
     public function defaultAction(){
-        global $db;
-        $table = $db->select_table('device');
-        $devices = $table->fetch_all('*', 'deleted=0');
+		global $_G, $db, $tpre;
+
+		$condition = array('d.deleted=0');
+		if(!$_G['admin']->isSuperAdmin()){
+			$condition[] = 'd.adminid='.$_G['admin']->id;
+		}
+
+		$condition = '('.implode(') AND (', $condition).')';
+        $devices = $db->fetch_all("SELECT d.*,a.realname AS admin
+			FROM {$tpre}device d
+				LEFT JOIN {$tpre}administrator a ON a.id=d.adminid
+			WHERE $condition");
+
+		$admins = array();
+		$query = $db->query("SELECT id,realname FROM {$tpre}administrator WHERE deleted=0");
+		while($a = $query->fetch_assoc()){
+			$admins[$a['id']] = $a['realname'];
+		}
 
         extract($GLOBALS, EXTR_REFS | EXTR_SKIP);
         include view('list');
@@ -32,11 +47,17 @@ class DeviceMainModule extends AdminControlPanelModule{
                 }
             }
         }
-        foreach(array('name', 'model', 'admin', 'location') as $var){
+        foreach(array('name', 'model', 'location') as $var){
             if(isset($_POST[$var])){
                 $device->$var = htmlspecialchars(trim($_POST[$var]));
             }
         }
+
+		if($_G['admin']->isSuperAdmin() && isset($_POST['adminid'])){
+			if(Administrator::Exist($_POST['adminid'])){
+				$device->adminid = intval($_POST['adminid']);
+			}
+		}
 
         if($id <= 0){
 			if(!isset($device->kindly_reminder)){
@@ -55,6 +76,10 @@ class DeviceMainModule extends AdminControlPanelModule{
         $id = intval($_REQUEST['id']);
         $device = new Device($id);
         if($device->exists()){
+			if($device->adminid && $device->adminid != $_G['admin']->id){
+				showmsg('no_permission_to_delete_device', 'back');
+			}
+
             $device->deleted = 1;
 
             global $db, $tpre;
