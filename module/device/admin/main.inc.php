@@ -39,36 +39,46 @@ class DeviceMainModule extends AdminControlPanelModule{
             }
         }
 
-        if(isset($_POST['status'])){
-            $new_status = intval($_POST['status']);
-            if(isset(Device::$Status[$new_status])){
-                if($device->status != Device::Reserved){
-                    $device->status = $new_status;
-                }
-            }
-        }
-        foreach(array('name', 'model', 'location') as $var){
-            if(isset($_POST[$var])){
-                $device->$var = htmlspecialchars(trim($_POST[$var]));
-            }
-        }
+		if($_POST){
+			if(isset($_POST['status'])){
+				$new_status = intval($_POST['status']);
+				if(isset(Device::$Status[$new_status])){
+					if($device->status != Device::Reserved){
+						$device->status = $new_status;
+					}
+				}
+			}
+			foreach(array('name', 'model', 'location', 'kindly_reminder') as $var){
+				if(isset($_POST[$var])){
+					$device->$var = htmlspecialchars(trim($_POST[$var]));
+				}
+			}
 
-		global $_G;
-		if($_G['admin']->isSuperAdmin() && isset($_POST['adminid'])){
-			if(Administrator::Exist($_POST['adminid'])){
-				$device->adminid = intval($_POST['adminid']);
+			global $_G;
+			if($_G['admin']->isSuperAdmin() && isset($_POST['adminid'])){
+				if(Administrator::Exist($_POST['adminid'])){
+					$device->adminid = intval($_POST['adminid']);
+				}
+			}
+
+			if($id <= 0){
+				if(!isset($device->kindly_reminder)){
+					$device->kindly_reminder = '';
+				}
+				$device->insert();
+			}
+
+			if(!empty($_GET['ajax'])){
+				echo json_encode($device->toReadable());
+				exit;
+			}else{
+				showmsg('device_is_updated', 'index.php?mod=device');
 			}
 		}
 
-        if($id <= 0){
-			if(!isset($device->kindly_reminder)){
-				$device->kindly_reminder = '';
-			}
-            $device->insert();
-        }
-
-        echo json_encode($device->toReadable());
-        exit;
+		extract($GLOBALS, EXTR_REFS | EXTR_SKIP);
+		$d = $device->toReadable();
+		include view('edit');
     }
 
     public function deleteAction(){

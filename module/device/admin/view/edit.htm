@@ -1,0 +1,33 @@
+{template header}
+
+<ol class="nav">
+    <li><a href="admin.php">管理面板</a></li>
+    <li><a href="admin.php?mod=device">设备</a></li>
+</ol>
+
+<form class="toast" method="post" action="admin.php?mod=device&action=edit&id=$d[id]">
+
+<div class="edit_form">
+	<table>
+		<tr>
+			<th>设备名称：</th>
+			<td><input type="text" name="name" value="$d[name]"></td>
+		</tr>
+		<tr>
+			<th>地点：</th>
+			<td><input type="text" name="location" value="$d[name]"></td>
+		</tr>
+		<tr>
+			<th>温馨提示：</th>
+			<td><textarea name="kindly_reminder">$d[kindly_reminder]</textarea></td>
+		</tr>
+	</table>
+
+	<div class="post_buttons">
+		<button type="submit">修改</button>
+	</div>
+</div>
+
+</form>
+
+{template footer}
