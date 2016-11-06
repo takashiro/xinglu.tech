@@ -395,20 +395,20 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 10px;
 }
 
-.homebutton {
+.devicebutton {
   background: #207d59;
 }
 
-.aboutbutton {
+.reservebutton {
   background: #3b5b8e;
+}
+
+.mybutton {
+  background: #b85b53;
 }
 
 .projectbutton {
   background: #5c9faf;
-}
-
-.contactbutton {
-  background: #b85b53;
 }
 
 .logo-top-margin {
