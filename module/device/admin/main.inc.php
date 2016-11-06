@@ -55,9 +55,13 @@ class DeviceMainModule extends AdminControlPanelModule{
 			}
 
 			global $_G;
-			if($_G['admin']->isSuperAdmin() && isset($_POST['adminid'])){
-				if(Administrator::Exist($_POST['adminid'])){
+			if($_G['admin']->isSuperAdmin()){
+				if(isset($_POST['adminid']) && Administrator::Exist($_POST['adminid'])){
 					$device->adminid = intval($_POST['adminid']);
+				}
+			}else{
+				if($id <= 0){
+					$device->adminid = $_G['admin']->id;
 				}
 			}
 
