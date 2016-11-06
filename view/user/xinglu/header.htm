@@ -23,7 +23,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p class="phone-info">$_CONFIG[sitename]欢迎你，<!--{if !empty($_USER['realname'])}-->$_USER[realname]<!--{else}-->新用户<!--{/if}-->！</p>
+                        <p class="phone-info">$_CONFIG[sitename]<!--{if $_G['user']->isLoggedIn()}-->欢迎你，<!--{if !empty($_USER['realname'])}-->$_USER[realname]<!--{else}-->新用户<!--{/if}-->！<!--{/if}--></p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="profile">
