@@ -347,32 +347,22 @@ h1, h2, h3, h4, h5 {
   background: rgba(0, 0, 0, 0.7);
 }
 
+.top-header a:hover{
+	color: white;
+	text-shadow: 0 0 2px white;
+}
+
+.top-header .profile{
+	text-align: right;
+	margin-right: 80px;
+}
+
 .phone-info a {
   color: #5cb48e;
 }
 @media screen and (max-width: 992px) {
   .phone-info {
     text-align: center;
-  }
-}
-
-.social-icons {
-  text-align: right;
-}
-.social-icons a {
-  color: white;
-}
-.social-icons li {
-  display: inline-block;
-  margin-left: 15px;
-}
-@media screen and (max-width: 992px) {
-  .social-icons {
-    text-align: center;
-    margin-top: 20px;
-  }
-  .social-icons li:first-child {
-    margin-left: 0;
   }
 }
 
