@@ -9,7 +9,10 @@ if($_G['user']->isLoggedIn()){
 if($_POST){
 	$account = isset($_POST['account']) ? trim($_POST['account']) : '';
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
-	$result = $_G['user']->login($account, $password);
+	$result = $_G['user']->login($account, $password, 'account');
+	if(!$result){
+		$result = $_G['user']->login($account, $password, 'email');
+	}
 	if($result){
 		if(empty($_POST['http_referer'])){
 			showmsg('successfully_logged_in', 'index.php');

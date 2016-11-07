@@ -26,4 +26,10 @@ return array(
 	'user_password_is_successfully_reset' => '成功重置用户密码。',
 	'user_is_now_verified' => '成功确认该用户的注册信息。',
 	'user_is_now_banned' => '成功踢出该用户。',
+
+	'you_have_logged_in_do_not_need_reset_password' => '您已经登录，无需使用找回密码功能。',
+	'an_email_is_sent_to_reset_your_password' => '密码重置邮件已经发送至您的邮箱。',
+	'failed_to_send_email' => '发送邮件失败。',
+	'reset_password_authkey_expired' => '重置密码链接已经失效，请重试。',
+	'your_password_is_successfully_reset' => '重置密码成功，请登录。',
 );

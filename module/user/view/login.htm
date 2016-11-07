@@ -1,6 +1,11 @@
 {template header}
 
 <script src="{__MODULE_ROOT__}view/js/login.js"></script>
+<style>
+.subscribe-text a{
+	color: lightgoldenrodyellow;
+}
+</style>
 
 <div class="col-md-9 col-sm-12 content-holder">
 	<div id="menu-container">
@@ -11,11 +16,10 @@
 		<div id="menu-1" class="homepage home-section text-center">
 			<div class="welcome-text">
 				<h2>欢迎登录<strong>$_CONFIG[sitename]</strong>!</h2>
-				<p>This is a laboratory device management system brought to you by <span class="orange">$_CONFIG[sitename]</span> <span class="green">xinglu</span>.tech website. You can register and reserve devices online. Please fill in the blanks below. Thank you.</p>
 				<form id="login-form" action="index.php" method="post" class="toast standard-form">
 					<div class="row">
 						<fieldset class="col-md-offset-2 col-md-6">
-							<input type="text" name="account" placeholder="请填写您的用户名">
+							<input type="text" name="account" placeholder="请填写您的用户名或邮箱">
 						</fieldset>
 						<fieldset class="col-md-offset-2 col-md-6">
 							<input type="password" id="password" name="password" placeholder="请填写您的密码" autocomplete="off">
@@ -26,7 +30,7 @@
 							<button name="mod" type="submit" class="button default" value="user:register" id="register-button">注册</button>
 						</fieldset>
 					</div>
-					<p class="subscribe-text">Please subscribe your email for latest updates!</p>
+					<p class="subscribe-text">若您忘记密码，可以<a href="index.php?mod=user:resetpassword">点击这里找回密码</a></p>
 				</form>
 			</div>
 		</div>
